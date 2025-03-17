@@ -1,0 +1,63 @@
+from flask import Flask,jsonify
+
+
+todo = Flask('__name__')
+
+students = [
+        {
+            'id':1,
+            'student_name': 'std1',
+            'age': 21,
+            'email':'hello@gmail.com'
+        },
+        {
+            'id':2,
+            'student_name': 'std2',
+            'age': 21,
+            'email': 'world@gmail.com'
+        },
+        {
+            'id':3,
+            'student_name': 'std3',
+            'age': 21,
+            'email': 'tata@gmail.com'
+        },
+        {
+            'id':4,
+            'student_name': 'std4',
+            'age': 21,
+            'email': 'hello@gmail.com'
+        },
+        {
+            'id':5,
+            'student_name': 'std5',
+            'age': 21,
+            'email': 'hello@gmail.com'
+        },
+    ]
+
+@todo.route('/students-list')
+def students_list():
+
+    return jsonify(students)
+
+
+
+@todo.route('/student/get/<int:id>')
+def student_get_by_id(id):
+    for std in students:
+        if std ['id'] == id:
+            return jsonify(std)
+    return "id not found"
+
+#todo.route('/student/get/<int:id>')
+#def students_list():
+    #return "students list"
+
+
+if __name__ == '__main__':
+    todo.run(
+        host='127.0.0.1',
+        port=5010,
+        debug=True
+    )
